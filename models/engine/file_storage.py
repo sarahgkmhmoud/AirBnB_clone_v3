@@ -72,8 +72,8 @@ class FileStorage:
     def get(self, cls, id):
         """A method to retrieve one object"""
         if (cls in classes.values()):
-           a.obj = self.all(cls)
-           for k, v in a.obj.items():
+           a = self.all(cls)
+           for k, v in a.items():
                if k.split(".")[1] == id:
                    return v
         return None

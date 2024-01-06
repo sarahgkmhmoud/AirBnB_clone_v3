@@ -3,6 +3,7 @@
 from flask import Flask, jsonify, make_response
 from models import storage
 from api.v1.views import app_views
+from os import getenv
 
 
 app = Flask(__name__)
@@ -21,4 +22,8 @@ def teardown(self):
     storage.close()
 
 if __name__ == "__main__":
-    app.run(port=5000, host="0.0.0.0", threaded=True)
+        if getenv('HBNB_API_HOST') and getenv('HBNB_API_PORT'):
+            app.run(host=getenv('HBNB_API_HOST'), port=getenv('HBNB_API_PORT'),
+                threaded=True)
+        else:
+            app.run(host='0.0.0.0', port='5000', threaded=True)

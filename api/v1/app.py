@@ -10,13 +10,13 @@ app = Flask(__name__)
 app.register_blueprint(app_views)
 
 
-@app.route("/api/v1/nop", strict_slashes=False)
-def custom_404():
-    """handler for 404 errors"""
-    return jsonify({"error": "Not found"})
+# @app.route("/api/v1/nop", strict_slashes=False)
+# def custom_404():
+#     """handler for 404 errors"""
+#     return jsonify({"error": "Not found"})
 
 @app.teardown_appcontext
-def teardown(exception=None):
+def teardown(self):
     """ remove the current storage"""
     storage.close()
 

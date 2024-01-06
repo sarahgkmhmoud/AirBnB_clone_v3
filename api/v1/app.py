@@ -13,7 +13,7 @@ app.register_blueprint(app_views)
 @app.errorhandler(404)
 def custom_404(error):
     """handler for 404 errors"""
-    return make_response(jsonify({"error": "Not found"}), 404)
+    return jsonify({"error": "Not found"}), 404
 
 @app.teardown_appcontext
 def teardown(self):

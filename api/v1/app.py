@@ -16,14 +16,16 @@ def custom_404(error):
     """handler for 404 errors"""
     return jsonify({"error": "Not found"}), 404
 
+
 @app.teardown_appcontext
 def teardown(self):
     """ remove the current storage"""
     storage.close()
 
+
 if __name__ == "__main__":
-        if getenv('HBNB_API_HOST') and getenv('HBNB_API_PORT'):
-            app.run(host=getenv('HBNB_API_HOST'), port=getenv('HBNB_API_PORT'),
+    if getenv('HBNB_API_HOST') and getenv('HBNB_API_PORT'):
+        app.run(host=getenv('HBNB_API_HOST'), port=getenv('HBNB_API_PORT'),
                 threaded=True)
-        else:
-            app.run(host='0.0.0.0', port='5000', threaded=True)
+    else:
+        app.run(host='0.0.0.0', port='5000', threaded=True)

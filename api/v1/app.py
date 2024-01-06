@@ -11,8 +11,8 @@ app.register_blueprint(app_views)
 
 @app.teardown_appcontext
 def teardown_appcontext():
-  """ remove the current SQLAlchemy Session"""
-  storage.close()
+    """ remove the current SQLAlchemy Session"""
+    storage.close()
 
 if __name__ == "__main__":
     app.run(port=5000, host="0.0.0.0", threaded=True)

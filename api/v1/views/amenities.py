@@ -8,7 +8,7 @@ from models import storage
 from models.amenity import Amenity
 
 
-@app_views.route("/amenities.py", methods=['GET', 'POST'],
+@app_views.route("/amenities", methods=['GET', 'POST'],
                  strict_slashes=False)
 def list_amenity_all():
     if request.method == 'GET':
@@ -40,9 +40,9 @@ def amenity_object(amenity_id):
         elif request.method == 'PUT':
             if not request.get_json(silent=True):
                 abort(400, 'Not a JSON')
-            state_update = request.get_json(silent=True)
-            if state_update:
-                for k, v in state_update.items():
+            amenity_update = request.get_json(silent=True)
+            if amenity_update:
+                for k, v in amenity_update.items():
                     if k not in ["id", "created_at", "updated_at"]:
                         setattr(amenity, k, v)
                 amenity.save()

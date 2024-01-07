@@ -15,11 +15,11 @@ def list_all():
                         for state in storage.all(State).values()
                         ]), 200
     if request.method == 'POST':
-        if not request.get_json():
+        if not request.get_json(silent=True):
             abort(400, 'Not a JSON')
-        elif 'name' not in request.get_json():
+        elif 'name' not in request.get_json(silent=True):
             abort(400, 'Missing name')
-        new_state = State(**(request.get_json()))
+        new_state = State(**(request.get_json(silent=True)))
         new_state.save()
         return jsonify(new_state.to_dict()), 201
 
@@ -35,9 +35,9 @@ def state_object(state_id):
         elif request.method == 'DELETE':
             return jsonify({}), 200
         elif request.method == 'PUT':
-            if not request.get_json():
+            if not request.get_json(silent=True):
                 abort(400, 'Not a JSON')
-            state_update = request.get_json()
+            state_update = request.get_json(silent=True)
             if state_update:
                 for k, v in state_update.items():
                     if k not in ["id", "created_at", "updated_at"]:

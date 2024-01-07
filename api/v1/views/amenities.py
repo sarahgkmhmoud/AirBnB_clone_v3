@@ -27,9 +27,9 @@ def list_amenity_all():
 
 @app_views.route("/amenities/<amenity_id>", methods=['GET', 'DELETE', 'PUT'],
                  strict_slashes=False)
-def amenity_object(state_id):
+def amenity_object(amenity_id):
     """State objects that handles all default RESTFul API actions"""
-    amenity = storage.get(Amenity, state_id)
+    amenity = storage.get(Amenity, amenity_id)
     if amenity:
         if request.method == 'GET':
             return jsonify(amenity.to_dict()), 200

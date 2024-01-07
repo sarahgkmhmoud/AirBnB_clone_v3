@@ -17,7 +17,7 @@ def list_all():
     if request.method == 'POST':
         if not request.get_json(silent=True):
             abort(400, 'Not a JSON')
-        elif 'name' not in request.get_json(silent=True):
+        if not request.get_json(silent=True).get('name'):
             abort(400, 'Missing name')
         new_state = State(**(request.get_json(silent=True)))
         new_state.save()

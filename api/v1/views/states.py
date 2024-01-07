@@ -15,7 +15,7 @@ def list_all():
                         for state in storage.all(State).values()
                         ]), 200
     if request.method == 'POST':
-        if not request.get_json:
+        if not request.get_json():
             abort(400, 'Not a JSON')
         elif 'name' not in request.get_json():
             abort(400, 'Missing name')

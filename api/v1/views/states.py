@@ -35,7 +35,7 @@ def state_object(state_id):
         elif request.method == 'DELETE':
             return jsonify({}), 200
         elif request.method == 'PUT':
-            if not request.get_json:
+            if not request.get_json():
                 abort(400, 'Not a JSON')
             state_update = request.get_json()
             if state_update:

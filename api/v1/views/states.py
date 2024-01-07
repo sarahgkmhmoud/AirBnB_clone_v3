@@ -31,7 +31,7 @@ def state_object(state_id):
     state = storage.get(State, state_id)
     if state:
         if request.method == 'GET':
-            return jsonify(state.to_dict())
+            return jsonify(state.to_dict()), 200
         elif request.method == 'DELETE':
             return jsonify({}), 200
         elif request.method == 'PUT':

@@ -33,6 +33,8 @@ def state_object(state_id):
         if request.method == 'GET':
             return jsonify(state.to_dict()), 200
         elif request.method == 'DELETE':
+            storage.delete(state)
+            storage.save()
             return jsonify({}), 200
         elif request.method == 'PUT':
             if not request.get_json(silent=True):

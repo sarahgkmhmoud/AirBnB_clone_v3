@@ -44,7 +44,7 @@ def list_reviews_all(place_id):
 
 @app_views.route("/reviews/<review_id>", methods=['GET', 'DELETE', 'PUT'],
                  strict_slashes=False)
-def place_object(review_id):
+def review_object(review_id):
     """State objects that handles all default RESTFul API actions"""
     review = storage.get(Review, review_id)
     if review:

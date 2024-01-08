@@ -45,7 +45,7 @@ def user_object(user_id):
             user_update = request.get_json(silent=True)
             if user_update:
                 for k, v in user_update.items():
-                    if k not in ["id", "created_at", "updated_at"]:
+                    if k not in ["id", "created_at", "updated_at", "email"]:
                         setattr(user, k, v)
                 user.save()
                 return jsonify(user.to_dict()), 200

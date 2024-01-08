@@ -20,7 +20,7 @@ def list_places_all(city_id):
                 for place in city.places
                 if city.id == city_id]
                 ), 200
-        
+
         if request.method == 'POST':
             if not request.get_json(silent=True):
                 abort(400, 'Not a JSON')
@@ -28,12 +28,13 @@ def list_places_all(city_id):
                 abort(400, 'Missing name')
             if not request.get_json(silent=True).get('user_id'):
                 abort(400, 'Missing user_id')
+            if request.get_json(silent=True).get('user_id') != 'user_id':
+                abort(404)
             new_place = Place(**(request.get_json(silent=True)))
             setattr(new_place, 'city_id', city_id)
             new_place.save()
             return jsonify(new_place.to_dict()), 201
-            if not user:
-                abort(404)
+
     else:
         abort(404)
 

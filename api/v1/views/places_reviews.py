@@ -12,13 +12,13 @@ from models.review import Review
 
 @app_views.route("/places/<place_id>/reviews", methods=['GET', 'POST'],
                  strict_slashes=False)
-def list_places_all(place_id):
+def list_reviews_all(place_id):
     place = storage.get(Place, place_id)
     if place:
         if request.method == 'GET':
             return jsonify(
-               [place.to_dict()
-                for place in place.reviews
+               [revieweview.to_dict()
+                for review in place.reviews
                 if place.id == place_id]
                 ), 200
 

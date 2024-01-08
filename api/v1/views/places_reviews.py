@@ -17,7 +17,7 @@ def list_reviews_all(place_id):
     if place:
         if request.method == 'GET':
             return jsonify(
-               [revieweview.to_dict()
+               [review.to_dict()
                 for review in place.reviews
                 if place.id == place_id]
                 ), 200
